@@ -99,7 +99,7 @@ class WeatherProcessor {
     }
 }
 
-// Rainer Coetze - Storing Weather Data
+// Rainer Coetzer - Storing Weather Data
 class WeatherStorage {
     private static final String FILE_NAME = "weather_log.txt";
 
