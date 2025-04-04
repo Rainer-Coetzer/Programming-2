@@ -80,7 +80,7 @@ class WeatherFetcher {
     }
 }
 
-// Rainer Coetze - Processing Weather Data
+// Rainer Coetzer - Processing Weather Data
 class WeatherProcessor {
     public static void processData(String jsonData, JTextArea outputArea) {
         try {
