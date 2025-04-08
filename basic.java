@@ -81,23 +81,45 @@ class WeatherFetcher {
 }
 
 // Rainer Coetzer - Processing Weather Data
+//json weather data 
+/*{
+  "latitude": -22.56,
+  "longitude": 17.08,
+  "generationtime_ms": 0.271,
+  "utc_offset_seconds": 0,
+  "timezone": "GMT",
+  "current_weather": {
+    "temperature": 21.3,
+    "windspeed": 13.0,
+    "winddirection": 90,
+    "weathercode": 3,
+    "time": "2025-04-04T14:00"
+  }
+}*/
+
 class WeatherProcessor {
     public static void processData(String jsonData, JTextArea outputArea) {
         try {
             JSONObject json = new JSONObject(jsonData);
-            String cityName = json.getString("name");
-            JSONObject main = json.getJSONObject("main");
-            double temp = main.getDouble("temp") - 273.15; // Convert Kelvin to Celsius
-            int humidity = main.getInt("humidity");
+            JSONObject currentWeather = json.getJSONObject("current_weather");
 
-            String weatherInfo = "City: " + cityName + "\nTemperature: " + String.format("%.2f", temp) + "°C\nHumidity: " + humidity + "%";
+            double temperature = currentWeather.getDouble("temperature");
+            double windspeed = currentWeather.getDouble("windspeed");
+            String time = currentWeather.getString("time");
+
+            String weatherInfo = "Temperature: " + temperature + "°C\n"
+                    + "Wind Speed: " + windspeed + " km/h\n"
+                    + "Time of Reading: " + time;
+
             outputArea.setText(weatherInfo);
             WeatherStorage.saveWeatherData(weatherInfo);
         } catch (Exception e) {
             ErrorHandler.logError("Data Processing Error: " + e.getMessage());
+            outputArea.setText("Could not process weather data.");
         }
     }
 }
+
 
 // Rainer Coetzer - Storing Weather Data
 class WeatherStorage {
