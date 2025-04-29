@@ -1,0 +1,12 @@
+WeatherGUI
+WeatherHistory
+CelsiusStrategy
+WeatherDatabase
+WeatherApp
+WeatherGUI$1
+WeatherFrame
+FahrenheitStrategy
+WeatherFetcher
+WeatherData
+DailyForecast
+WeatherUnitStrategy
